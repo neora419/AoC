@@ -29,7 +29,7 @@ def find_sizes(sim, count, summation):
   print(sim)
   return sim, count, summation
 
-lines = [line.strip("\n") for line in open("input/day7.txt").readlines()]
+lines = [line.strip("\n") for line in open("input/day07.txt").readlines()]
 
 sim = {"/":{},}
 current = ["/",]

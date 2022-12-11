@@ -17,7 +17,7 @@ for j, monkey in enumerate(monkeys):
   mons[j]["ins_count"] = 0
 
 list1 = [mon["div"] for mon in mons]
-foo = math.prod(list1)
+divable_by_all = math.prod(list1)
 for u in range(10_000):
   for k, mon in enumerate(mons):
     mon["ins_count"] += len(mon["start"])
@@ -27,10 +27,10 @@ for u in range(10_000):
       nums.append(int(item_lvl) if mon["op"][2] == "old" else int(mon["op"][2]))
       worry = math.floor(ops[mon["op"][1]](nums))
       if worry % mon["div"] == 0:
-        mons[mon["true"]]["start"].append(worry % foo)
+        mons[mon["true"]]["start"].append(worry % divable_by_all)
         assert mon["true"] != k
       else:
-        mons[mon["false"]]["start"].append(worry % foo)
+        mons[mon["false"]]["start"].append(worry % divable_by_all)
         assert mon["true"] != k
     mon["start"] = []
         

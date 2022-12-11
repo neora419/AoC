@@ -1,6 +1,6 @@
 import copy,regex
 
-lines = [line.strip("\n") for line in open("input/day5.txt").readlines()]
+lines = [line.strip("\n") for line in open("input/day05.txt").readlines()]
 
 stacks = []
 header_count = 0

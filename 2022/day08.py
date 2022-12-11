@@ -1,6 +1,6 @@
 import copy, json, math, regex
 
-lines = [line.strip("\n") for line in open("input/day8.txt").readlines()]
+lines = [line.strip("\n") for line in open("input/day08.txt").readlines()]
 
 vis_map = {}
 start = len(lines)*2+len(lines[0])*2-4
