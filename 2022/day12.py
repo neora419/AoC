@@ -18,9 +18,8 @@ a_z_values = {a:i for i, a in enumerate(string.ascii_lowercase)}
 height_map, been_map = map_data(lines)
 for x, _ in enumerate(height_map):
   for y, char in enumerate(height_map[x]):
-    if "a" == char:
-      if y == 0:
-        start.append((x, y))
+    if "E" == char:
+      start = (x, y)
 
 res = []
 def is_climbable(height_map, current, a, b):
@@ -31,63 +30,62 @@ def is_climbable(height_map, current, a, b):
   a_z_values = {a:i for i, a in enumerate(string.ascii_lowercase)}
   a_z_values["S"] = 0
   a_z_values["E"] = 25
-  doff_o = a_z_values[two] - a_z_values[one]
-  diff = a_z_values[two] - a_z_values[one]
-  if diff <=1 and diff >= -2:
+  diff = a_z_values[one] - a_z_values[two]
+  if diff <=1:
+    if two == "a":
+      print("part 2: ", i)
+    if a_z_values[one] == 0: pass
     return True
   else:
     return False
 
-for point in start:
-  _, been_map = map_data(lines)
-
-  end = ()
-  for x, _ in enumerate(height_map):
-    for y, char in enumerate(height_map[x]):
-      if "E" == char:
-        end = (x, y)
-  # test = {}
-  # test.keys()
-  been_to_list = [point,]
+end = ()
+for x, _ in enumerate(height_map):
+  for y, char in enumerate(height_map[x]):
+    if "S" == char:
+      end = (x, y)
+# test = {}
+# test.keys()
+been_to_list = [start,]
 
 
-  print(point)
-  for i in range(1, 1000):
-    # if i % 20 == 0:
-    #   print(i)
-    temp_list = copy.deepcopy(been_to_list)
-    for l, been_to in enumerate(temp_list):
-      if been_to[0] != 0:
-        if been_map[been_to[0] - 1][been_to[1]]:
-          if is_climbable(height_map, been_to, been_to[0] - 1, been_to[1]): 
-            been_to_list.append((been_to[0] - 1, been_to[1]))
-            been_map[been_to[0] - 1][been_to[1]] = False
-      if been_to[0] != len(height_map) - 1:
-        if been_map[been_to[0] + 1][been_to[1]]:
-          if is_climbable(height_map, been_to, been_to[0] + 1, been_to[1]): 
-            been_to_list.append((been_to[0] + 1, been_to[1]))
-            been_map[been_to[0] + 1][been_to[1]] = False
+print(start)
+for i in range(1, 1000):
+  # if i % 20 == 0:
+  # print(i)
+  temp_list = copy.deepcopy(been_to_list)
+  for l, been_to in enumerate(temp_list):
+    if been_to[0] != 0:
+      if been_map[been_to[0] - 1][been_to[1]]:
+        if is_climbable(height_map, been_to, been_to[0] - 1, been_to[1]): 
+          been_to_list.append((been_to[0] - 1, been_to[1]))
+          been_map[been_to[0] - 1][been_to[1]] = False
+    if been_to[0] != len(height_map) - 1:
+      if been_map[been_to[0] + 1][been_to[1]]:
+        if is_climbable(height_map, been_to, been_to[0] + 1, been_to[1]): 
+          been_to_list.append((been_to[0] + 1, been_to[1]))
+          been_map[been_to[0] + 1][been_to[1]] = False
 
-      if been_to[1] != 0:
-        if been_map[been_to[0]][been_to[1] - 1]:
-          if is_climbable(height_map, been_to, been_to[0], been_to[1] - 1):
-            been_to_list.append((been_to[0], been_to[1] - 1))
-            been_map[been_to[0]][been_to[1] - 1] = False
-      if been_to[1] != len(height_map[0]) - 1:
-        if been_map[been_to[0]][been_to[1] + 1]:
-          if is_climbable(height_map, been_to, been_to[0], been_to[1] + 1):
-            been_to_list.append((been_to[0], been_to[1] + 1))
-            been_map[been_to[0]][been_to[1] + 1] = False
-      
+    if been_to[1] != 0:
+      if been_map[been_to[0]][been_to[1] - 1]:
+        if is_climbable(height_map, been_to, been_to[0], been_to[1] - 1):
+          been_to_list.append((been_to[0], been_to[1] - 1))
+          been_map[been_to[0]][been_to[1] - 1] = False
+    if been_to[1] != len(height_map[0]) - 1:
+      if been_map[been_to[0]][been_to[1] + 1]:
+        if is_climbable(height_map, been_to, been_to[0], been_to[1] + 1):
+          been_to_list.append((been_to[0], been_to[1] + 1))
+          been_map[been_to[0]][been_to[1] + 1] = False
+    
+  # print(been_to_list)
+    
+  if end in been_to_list:
+    print(i)
     # print(been_to_list)
-      
-    if end in been_to_list:
-      print(i)
-      # print(been_to_list)
-      print(point)
-      res.append(i)
-      break
-      
+    print(start)
+    res.append(i)
+    break
+    
 
 print(sorted(res))
     # caps = regex.search(r"((?P<com>cd|dir|\d+|ls)\s?(?P<tar>[\w/\.]+)?)", line)
