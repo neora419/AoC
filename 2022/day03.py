@@ -2,7 +2,7 @@ import codecs
 import re
 import math
 import string
-lines = [line.strip() for line in codecs.open("input/day3.txt",)]
+lines = [line.strip() for line in codecs.open("input/day03.txt",)]
 
 score = 0
 j = 0

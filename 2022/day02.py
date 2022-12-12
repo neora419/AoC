@@ -1,6 +1,6 @@
 import codecs
 import re
-lines = [line.strip() for line in codecs.open("input/day2.txt",)]
+lines = [line.strip() for line in codecs.open("input/day02.txt",)]
 
 score = 0
 for line in lines:

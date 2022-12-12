@@ -1,4 +1,4 @@
-lines = [line.strip() for line in open("input/day1.txt").readlines()]
+lines = [line.strip() for line in open("input/day01.txt").readlines()]
 
 count_per_elf = []
 

@@ -1,6 +1,6 @@
 import copy, math, regex
 
-lines = [line.strip("\n") for line in open("input/day6.txt").readlines()]
+lines = [line.strip("\n") for line in open("input/day06.txt").readlines()]
 line = lines[0]
 
 recent_chars = []

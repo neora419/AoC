@@ -1,6 +1,6 @@
 import copy, json, math, regex
 
-lines = [line.strip("\n") for line in open("input/day9.txt").readlines()]
+lines = [line.strip("\n") for line in open("input/day09.txt").readlines()]
 
 def map_data(lines):
   map_val = [[]]
