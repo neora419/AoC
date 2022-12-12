@@ -19,17 +19,19 @@ for _ in range(9):
 print(len(knots))
 history = {}
 history["0 0"] = 1
+history_1 = {}
+history_1["0 0"] = 1
 for line in lines:
   com, val = line.split()
   for step in range(int(val)):
     if com == "U":
-      knots[0][1] += int(int(val) / abs(int(val)))
+      knots[0][1] += 1
     if com == "D":
-      knots[0][1] -= int(int(val) / abs(int(val)))
+      knots[0][1] -= 1
     if com == "R":
-      knots[0][0] += int(int(val) / abs(int(val)))
+      knots[0][0] += 1
     if com == "L":
-      knots[0][0] -= int(int(val) / abs(int(val)))
+      knots[0][0] -= 1
     for i, knot in enumerate(knots):
       if i == 0: continue
       diff_x = abs(knots[i - 1][0] - knots[i][0])
@@ -66,11 +68,14 @@ for line in lines:
           knots[i][1] += 1
         elif knots[i - 1][1] < knots[i][1]:
           knots[i][1] -= 1
-      if i == len(knots) - 1:
+      if i == 1:
+        history_1[f"{knots[i][0]} {knots[i][1]}"] = 1
+      elif i == len(knots) - 1:
         history[f"{knots[i][0]} {knots[i][1]}"] = 1
       # print("tail: ",tail)
-print(history.keys())
-print(len(history.keys()))
+# print(history.keys())
+print("part 1: ", len(history_1.keys()))
+print("part 2: ", len(history.keys()))
 
 
 
